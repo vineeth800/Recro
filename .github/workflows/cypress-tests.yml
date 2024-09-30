@@ -1,0 +1,56 @@
+name: Cypress Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to run tests against (dev, cdt, preprod, prod, beta)"
+        required: true
+        default: "dev"
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser: [chrome]
+
+    steps:
+      # Checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm i
+
+      # Run Cypress tests in headless mode
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v5
+        with:
+          browser: ${{ matrix.browser }}
+        continue-on-error: true  # Continue even if tests fail
+
+      # Always run: Generate multi-cucumber HTML report
+      - name: Generate multi-cucumber HTML report
+        if: always()  # Ensures this runs regardless of previous step's success/failure
+        run: |
+          npm run generate-report
+
+      # Always run: Upload HTML report and screenshots/videos as artifacts
+      - name: Upload HTML report and artifacts
+        if: always()  # Ensures this runs regardless of test results
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-report
+          path: |
+            e2e/reports/
+            cypress/screenshots/
+            cypress/videos/

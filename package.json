@@ -1,0 +1,30 @@
+{
+  "name": "cypress-assignment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ui": "npx cypress run",
+    "generate-report": "node reportHtmlGenerator.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cypress-audit/pa11y": "^1.4.2",
+    "cypress": "^13.11.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-file-upload": "^5.0.8",
+    "cypress-real-events": "^1.13.0",
+    "multiple-cucumber-html-reporter": "^3.7.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "step_definitions": "./cypress/steps",
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "__assets__/e2e/reports"
+    }
+  },
+  "devDependencies": {
+    "@cypress-audit/lighthouse": "^1.4.2"
+  }
+}
