@@ -73,7 +73,8 @@ Videos: Located in cypress/videos/
 Scripts
 The package.json includes several useful scripts:
 
-Run ui: npx cypress run
+Run cypress: npx cypress run
+Open Cypress : npx cypress open
 Generate report: npm run generate-report
 
 Conclusion
