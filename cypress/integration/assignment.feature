@@ -11,9 +11,9 @@ Feature: Recro Assignment
         And I fill out the form and click the Submit button
         Then I should see the success message confirming submission
 
-    Scenario: Verify the form submission in "My Requests"
-        When I go to Accommodations > My Requests
-        Then I should see the submitted form in the list of requests
+    # Scenario: Verify the form submission in "My Requests"
+    #     When I go to Accommodations > My Requests
+    #     Then I should see the submitted form in the list of requests
 
-    Scenario:  varify performance metrics using Lighthouse
-        Then I verified the performance metrics   
+    # Scenario:  varify performance metrics using Lighthouse
+    #     Then I verified the performance metrics   

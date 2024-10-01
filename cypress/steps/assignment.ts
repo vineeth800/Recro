@@ -58,7 +58,7 @@ And("I fill out the form and click the Submit button", () => {
     "Active Cancer",
     "Lose over 50 for good",
     "Dieting",
-    "20",
+    "12/02/1998",
     "abc@gmail.com",
     "9123659874",
     "xyz , abc 123",
@@ -146,7 +146,7 @@ const clickCheckbox = ($el, value) => {
 };
 
 const selectFromCalendar = ($el, value) => {
-  cy.wrap($el).contains(".q-date__calendar-days-container span", value).click();
+  cy.selectDate($el, value);
 };
 
 const handleFormElement = ($el, record, index) => {
